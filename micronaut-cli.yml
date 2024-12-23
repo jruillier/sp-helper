@@ -1,0 +1,6 @@
+applicationType: default
+defaultPackage: eu.aronnax.sunsetpaddling
+testFramework: junit
+sourceLanguage: java
+buildTool: maven
+features: [app-name, eclipsestore, eclipsestore-rest, http-client-test, java, java-application, junit, junit-params, logback, lombok, maven, maven-enforcer-plugin, micronaut-aot, micronaut-http-validation, mockito, netty-server, properties, readme, security, security-annotations, security-jwt, serialization-jackson, shade, static-resources, views-fieldset, views-jte]
