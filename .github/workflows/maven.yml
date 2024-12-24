@@ -30,7 +30,7 @@ jobs:
     - name: Build with Maven
       env:
         SCW_SECRET_KEY: ${{ secrets.SCW_SECRET_KEY }}
-      run: mvn -B deploy --file pom.xml -Dpackaging=docker -Djib.to.auth.username=nologin -Djib.to.auth.password=${SCW_SECRET_KEY}
+      run: mvn -B deploy --file pom.xml -Dpackaging=docker -Djib.to.auth.username=nologin -Djib.to.auth.password=$SCW_SECRET_KEY
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     #- name: Update dependency graph
