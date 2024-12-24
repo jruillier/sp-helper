@@ -1,26 +1,33 @@
 package eu.aronnax.sunsetpaddling;
 
 
+import gg.jte.generated.precompiled.Templates;
+import io.micronaut.context.BeanLocator;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.views.View;
-import java.util.Collections;
 import java.util.Map;
 
 /**
  * Contrôleur pour la page d'accueil.
  */
-@Controller
+@Controller(produces = "text/html")
 public class HomeController {
 
+    private final Templates templates;
+    private final BeanLocator beanLocator;
+
+    public HomeController(final Templates templates, final BeanLocator beanLocator) {
+        this.templates = templates;
+        this.beanLocator = beanLocator;
+    }
+
     /**
-     * Affiche la vue example.jte avec l'annotation @View.
+     * Affiche la vue example.jte.
      */
-    @Get("/example")
-    @View("example")
-    public Map<String, Object> example() {
-        return Map.of("message", "Hello, world!",
-                "showTime", true);
+    @Get
+    public String home() {
+        return templates.home(beanLocator, "Hello, World!", true).render();
     }
 
 }

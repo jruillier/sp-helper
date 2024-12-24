@@ -16,6 +16,7 @@
     <packaging>jar</packaging>
     <jdk.version>21</jdk.version>
     <release.version>21</release.version>
+    <jte.version>3.1.15</jte.version>
     <micronaut.version>4.7.3</micronaut.version>
     <micronaut.aot.enabled>false</micronaut.aot.enabled>
     <micronaut.aot.packageName>eu.aronnax.sunsetpaddling.aot.generated</micronaut.aot.packageName>
@@ -86,6 +87,17 @@
       <groupId>io.micronaut.views</groupId>
       <artifactId>micronaut-views-jte</artifactId>
       <scope>compile</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>jte-kotlin</artifactId>
+          <groupId>gg.jte</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>gg.jte</groupId>
+      <artifactId>jte-models</artifactId>
+      <version>${jte.version}</version>
     </dependency>
     <dependency>
       <groupId>ch.qos.logback</groupId>
@@ -189,19 +201,33 @@
       <plugin>
         <groupId>gg.jte</groupId>
         <artifactId>jte-maven-plugin</artifactId>
-        <version>3.1.14</version>
-          <configuration>
-            <sourceDirectory>src/main/jte</sourceDirectory>
-            <contentType>Html</contentType>
-          </configuration>
-          <executions>
-            <execution>
-              <phase>generate-sources</phase>
-              <goals>
-                <goal>generate</goal>
-              </goals>
-            </execution>
-          </executions>
+        <version>3.1.12</version>
+        <configuration>
+          <sourceDirectory>src/main/resources/views</sourceDirectory>
+          <targetDirectory>target/generated-sources/jte</targetDirectory>
+          <contentType>Html</contentType>
+          <!--                    <binaryStaticContent>true</binaryStaticContent>-->
+          <extensions>
+            <extension>
+              <className>gg.jte.models.generator.ModelExtension</className>
+            </extension>
+          </extensions>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+          </execution>
+        </executions>
+        <dependencies>
+          <dependency>
+            <groupId>gg.jte</groupId>
+            <artifactId>jte-models</artifactId>
+            <version>${jte.version}</version>
+          </dependency>
+        </dependencies>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
