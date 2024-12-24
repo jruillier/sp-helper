@@ -23,6 +23,12 @@
     <exec.mainClass>eu.aronnax.sunsetpaddling.Application</exec.mainClass>
   </properties>
 
+  <scm>
+    <connection>scm:git:https://github.com/jruillier/sp-helper.git</connection>
+    <developerConnection>scm:git:https://github.com/jruillier/sp-helper.git</developerConnection>
+    <url>https://github.com/jruillier/sp-helper</url>
+  </scm>
+
   <repositories>
     <repository>
       <id>central</id>
@@ -132,6 +138,22 @@
   <build>
     <plugins>
       <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>buildnumber-maven-plugin</artifactId>
+        <version>3.2.0</version>
+        <executions>
+          <execution>
+            <phase>initialize</phase>
+            <goals>
+              <goal>create</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <scmBranchPropertyName>git.branch</scmBranchPropertyName>
+        </configuration>
+      </plugin>
+      <plugin>
         <groupId>io.micronaut.maven</groupId>
         <artifactId>micronaut-maven-plugin</artifactId>
         <configuration>
@@ -154,6 +176,9 @@
           <configuration>
             <to>
               <image>rg.fr-par.scw.cloud/funcscwsphelper1agywj4l/${project.artifactId}:${project.version}</image>
+              <tags>
+                <tag>${git.branch}</tag>
+              </tags>
             </to>
           </configuration>
       </plugin>
