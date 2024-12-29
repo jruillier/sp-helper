@@ -22,11 +22,11 @@
         </div>
         <div class="modal-card-body">
             <div class="container">
-                @template.form.fieldset(fieldset = fieldset, readOnly)
+                @template.form.Fieldset(fieldset = fieldset, readOnly)
             </div>
         </div>
         <div class="modal-card-foot">
-            @template.form.buttons()
+            @template.form.Buttons()
         </div>
     </div>
 

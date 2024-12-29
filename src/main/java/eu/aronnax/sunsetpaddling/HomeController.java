@@ -5,8 +5,6 @@ import gg.jte.generated.precompiled.Templates;
 import io.micronaut.context.BeanLocator;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
-import io.micronaut.views.View;
-import java.util.Map;
 
 /**
  * Contrôleur pour la page d'accueil.
@@ -27,7 +25,7 @@ public class HomeController {
      */
     @Get
     public String home() {
-        return templates.home(beanLocator, "Hello, World!", true).render();
+        return templates.Home(beanLocator).render();
     }
 
 }

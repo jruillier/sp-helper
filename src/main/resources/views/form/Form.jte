@@ -2,6 +2,6 @@
 
 <form action="${form.action()}" method="${form.method()}">
     !{var fieldset = form.fieldset();}
-    @template.form.fieldset(fieldset = fieldset)
-    @template.form.buttons()
+    @template.form.Fieldset(fieldset = fieldset)
+    @template.form.Buttons()
 </form>
